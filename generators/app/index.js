@@ -33,7 +33,7 @@ module.exports = yeoman.generators.Base.extend({
   _writingGulp: function () {
     this.fs.copy(
       this.templatePath('gulpfile.js'),
-      this.destinationPath('.gulpfile.js')
+      this.destinationPath('gulpfile.js')
     );
   },
   _writingPackageJson: function () {
