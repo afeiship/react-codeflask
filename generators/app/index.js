@@ -4,37 +4,42 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
-    var done = this.async();
-
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the fine ' + chalk.red('generator-fei-github') + ' generator!'
-    ));
-
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
-
-    this.prompt(prompts, function (props) {
-      this.props = props;
-      // To access props later use this.props.someOption;
-
-      done();
-    }.bind(this));
-  },
-
   writing: function () {
+    this._writingEditorConfig();
+    this._writingGitIgnore();
+    this._writingLicense();
+    this._writingGulp();
+    this._writingPackageJson();
+  },
+  _writingEditorConfig: function () {
     this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+      this.templatePath('_editorconfig'),
+      this.destinationPath('.editorconfig')
     );
   },
 
-  install: function () {
-    this.installDependencies();
+  _writingGitIgnore: function () {
+    this.fs.copy(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
+    );
+  },
+  _writingLicense: function () {
+    this.fs.copy(
+      this.templatePath('LICENSE.txt'),
+      this.destinationPath('LICENSE.txt')
+    );
+  },
+  _writingGulp: function () {
+    this.fs.copy(
+      this.templatePath('gulpfile.js'),
+      this.destinationPath('.gulpfile.js')
+    );
+  },
+  _writingPackageJson: function () {
+    this.fs.copy(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json')
+    );
   }
 });

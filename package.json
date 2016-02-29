@@ -1,6 +1,6 @@
 {
   "name": "generator-fei-github",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Yeoman generator for git project.",
   "homepage": "git@github.com:afeiship/generator-fei-github.git",
   "author": {
