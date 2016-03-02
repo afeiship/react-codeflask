@@ -40,6 +40,7 @@ module.exports = yeoman.generators.Base.extend({
     this._writingLicense();
     this._writingGulp();
     this._writingPackageJson();
+    this._writingReadme();
   },
   _writingEditorConfig: function () {
     this.fs.copy(
@@ -70,6 +71,13 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
+      this.props
+    );
+  },
+  _writingReadme:function(){
+    this.fs.copyTpl(
+      this.templatePath('README.MD'),
+      this.destinationPath('README.MD'),
       this.props
     );
   }
