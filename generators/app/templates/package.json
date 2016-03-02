@@ -1,11 +1,15 @@
 {
-  "name": "generator-fei-github",
+  "name": "<%= project_name %>",
   "version": "0.0.0",
-  "description": "Yeoman generator for git project.",
-  "homepage": "git@github.com:afeiship/generator-fei-github.git",
+  "description": "<%= description %>",
+  "homepage": "<%= homepage %>",
   "author": {
     "name": "afei",
     "email": "1290657123@qq.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.2.0"
+  }
 }
