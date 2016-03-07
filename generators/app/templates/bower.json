@@ -7,8 +7,6 @@
   ],
   "license": "MIT",
   "keywords": [
-    "mask",
-    "widget",
     "next"
   ],
   "homepage": "https://github.com/afeiship/<%= project_name %>",
