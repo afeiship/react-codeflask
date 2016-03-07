@@ -22,11 +22,6 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'description',
       message: 'Your description?'
-    }, {
-      type: 'input',
-      name: 'homepage',
-      message: 'Your homepage?',
-      default:'https://github.com/afeiship'
     }];
 
     this.prompt(prompts, function (props) {
@@ -41,6 +36,7 @@ module.exports = yeoman.generators.Base.extend({
     this._writingGulp();
     this._writingPackageJson();
     this._writingReadme();
+    this._writingBowerJson();
   },
   _writingEditorConfig: function () {
     this.fs.copy(
@@ -78,6 +74,13 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copyTpl(
       this.templatePath('README.MD'),
       this.destinationPath('README.MD'),
+      this.props
+    );
+  },
+  _writingBowerJson:function(){
+    this.fs.copyTpl(
+      this.templatePath('bower.json'),
+      this.destinationPath('bower.json'),
       this.props
     );
   }

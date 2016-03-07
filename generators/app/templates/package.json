@@ -2,7 +2,7 @@
   "name": "<%= project_name %>",
   "version": "0.0.0",
   "description": "<%= description %>",
-  "homepage": "<%= homepage %>",
+  "homepage": "https://github.com/afeiship/<%= project_name %>",
   "author": {
     "name": "afei",
     "email": "1290657123@qq.com"

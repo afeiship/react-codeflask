@@ -1,0 +1,26 @@
+{
+  "name": "<%= project_name %>",
+  "description": "<%= description %>",
+  "main": "dist/<%= project_name %>.js",
+  "authors": [
+    "afei"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "mask",
+    "widget",
+    "next"
+  ],
+  "homepage": "https://github.com/afeiship/<%= project_name %>",
+  "moduleType": [
+    "amd"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src"
+  ]
+}
