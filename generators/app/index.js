@@ -40,14 +40,14 @@ module.exports = yeoman.generators.Base.extend({
   },
   _writingEditorConfig: function () {
     this.fs.copy(
-      this.templatePath('_editorconfig'),
+      this.templatePath('.editorconfig'),
       this.destinationPath('.editorconfig')
     );
   },
 
   _writingGitIgnore: function () {
     this.fs.copy(
-      this.templatePath('_gitignore'),
+      this.templatePath('.gitignore'),
       this.destinationPath('.gitignore')
     );
   },
