@@ -9,6 +9,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-load-plugins": "^1.2.0",
     "yargs": "^4.7.1"
