@@ -30,6 +30,7 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
   writing: function () {
+    this._writingGulpDir();
     this._writingEditorConfig();
     this._writingGitIgnore();
     this._writingLicense();
@@ -37,6 +38,13 @@ module.exports = yeoman.generators.Base.extend({
     this._writingPackageJson();
     this._writingReadme();
     this._writingBowerJson();
+  },
+  _writingGulpDir:function() {
+    console.log('copy gulp!');
+    this.fs.copy(
+      this.templatePath('./gulp'),
+      this.destinationPath('./gulp')
+    );
   },
   _writingEditorConfig: function () {
     this.fs.copy(

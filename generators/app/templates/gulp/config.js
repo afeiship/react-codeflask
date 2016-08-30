@@ -2,16 +2,21 @@
 
   'use strict';
 
+  var rootPath = process.cwd();
   var gulp = require('gulp');
   var argv = require('yargs').argv;
-  var fs = require('fs');
   var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'gulp.*', 'del']
   });
 
-  //import
-  fs.readdirSync('./gulp').map(function(file) {
-    require('./gulp/' + file);
-  });
+
+  module.exports = {
+    path: {
+      root: rootPath,
+      src: rootPath + '/src',
+      dist: rootPath + '/dist',
+      gulp: rootPath + '/gulp',
+    }
+  };
 
 }());
