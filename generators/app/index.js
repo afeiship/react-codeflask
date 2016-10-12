@@ -41,7 +41,6 @@ module.exports = yeoman.generators.Base.extend({
     this._writingBowerJson();
   },
   _writingGulpDir:function() {
-    console.log('copy gulp!');
     this.fs.copy(
       this.templatePath('./gulp'),
       this.destinationPath('./gulp')
