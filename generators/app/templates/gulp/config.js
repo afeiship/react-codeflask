@@ -16,6 +16,14 @@
       src: rootPath + '/src',
       dist: rootPath + '/dist',
       gulp: rootPath + '/gulp',
+    },
+    sassOptions: {
+      normal: {
+        outputStyle: 'expanded' /* nested | expanded | compact | compressed */
+      },
+      minify: {
+        outputStyle: 'compressed'
+      }
     }
   };
 
