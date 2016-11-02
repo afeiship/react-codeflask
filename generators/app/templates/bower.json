@@ -19,6 +19,8 @@
     "bower_components",
     "test",
     "tests",
-    "src"
+    "src",
+    "gulp",
+    "gulpfile.js"
   ]
 }
