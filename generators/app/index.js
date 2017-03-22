@@ -33,6 +33,7 @@ module.exports = yeoman.generators.Base.extend({
     this._writingGulpDir();
     this._writingNpmrc();
     this._writingEditorConfig();
+    this._writingNpmIgnore();
     this._writingGitIgnore();
     this._writingLicense();
     this._writingGulp();
@@ -56,6 +57,13 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copy(
       this.templatePath('.editorconfig'),
       this.destinationPath('.editorconfig')
+    );
+  },
+
+  _writingNpmIgnore: function () {
+    this.fs.copy(
+      this.templatePath('.npmignore'),
+      this.destinationPath('.npmignore')
     );
   },
   _writingGitIgnore: function () {
