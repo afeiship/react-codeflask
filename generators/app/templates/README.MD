@@ -1,2 +1,8 @@
-#<%= project_name %>
+# <%= project_name %>
 > <%= description %>
+
+
+## resources:
+
+## todos:
+- [ ] todo list..
