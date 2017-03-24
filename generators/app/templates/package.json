@@ -7,6 +7,9 @@
     "name": "afei",
     "email": "1290657123@qq.com"
   },
+  "scripts": {
+    "build": "gulp"
+  },
   "main": "dist/<%= project_name %>.js",
   "license": "MIT",
   "devDependencies": {
