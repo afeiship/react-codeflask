@@ -16,8 +16,9 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.21.1",
     "chalk": "^1.0.0",
+    "yeoman-generator": "^0.21.1",
+    "yeoman-generator-helper": "github:afeiship/yeoman-generator-helper",
     "yosay": "^1.0.2"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
+var yoHelper = require('yeoman-generator-helper');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -30,6 +31,8 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
   writing: function () {
+    yoHelper.rewriteProps(this.props);
+    console.log(this.props);
     this._writingGulpDir();
     this._writingSrcDir();
     this._writingNpmrc();
@@ -49,9 +52,10 @@ module.exports = yeoman.generators.Base.extend({
     );
   },
   _writingSrcDir:function() {
-    this.fs.copy(
-      this.templatePath('./src'),
-      this.destinationPath('./src')
+    this.fs.copyTpl(
+      this.templatePath('./src/next-template.js'),
+      this.destinationPath('./'+this.props.project_name),
+      this.props
     );
   },
   _writingNpmrc:function() {

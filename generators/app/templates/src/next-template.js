@@ -1,13 +1,15 @@
-(function (global) {
+(function () {
+
+  global = global || this;
 
   var nx = global.nx || require('next-js-core2');
-  var Template = nx.declare('nx.Template', {
+  var <%= ProjectName %> = nx.declare('nx.<%= ProjectName %>', {
 
   });
 
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Template;
+    module.exports = <%= ProjectName %>;
   }
 
-}(this));
+}());
