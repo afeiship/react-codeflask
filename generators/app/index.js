@@ -54,7 +54,7 @@ module.exports = yeoman.generators.Base.extend({
   _writingSrcDir:function() {
     this.fs.copyTpl(
       this.templatePath('./src/next-template.js'),
-      this.destinationPath('./'+this.props.project_name),
+      this.destinationPath('./src/'+this.props.project_name+'.js'),
       this.props
     );
   },
