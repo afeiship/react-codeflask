@@ -32,7 +32,9 @@ module.exports = yeoman.generators.Base.extend({
   },
   writing: function () {
     yoHelper.rewriteProps(this.props);
-    console.log(this.props);
+    //remove 'next' string;
+    this.props.ShortProjectName = this.props.ProjectName.slice(4);
+    //console.log(this.props);
     this._writingGulpDir();
     this._writingSrcDir();
     this._writingNpmrc();
