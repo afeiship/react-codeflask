@@ -49,8 +49,8 @@ module.exports = yeoman.generators.Base.extend({
   },
   _writingGulpDir:function() {
     this.fs.copy(
-      this.templatePath('./gulp'),
-      this.destinationPath('./gulp')
+      this.templatePath('./build'),
+      this.destinationPath('./build')
     );
   },
   _writingSrcDir:function() {
