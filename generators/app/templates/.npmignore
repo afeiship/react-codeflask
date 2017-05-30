@@ -4,5 +4,5 @@
 **/node_modules
 test
 src
-gulp
+build
 gulpfile.js
