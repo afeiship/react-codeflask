@@ -3,13 +3,13 @@
   var global = global || this;
 
   var nx = global.nx || require('next-js-core2');
-  var <%= ShortProjectName %> = nx.declare('nx.<%= ShortProjectName %>', {
+  var Nx<%= ShortProjectName %> = nx.declare('nx.Nx<%= ShortProjectName %>', {
 
   });
 
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = <%= ShortProjectName %>;
+    module.exports = Nx<%= ShortProjectName %>;
   }
 
 }());
