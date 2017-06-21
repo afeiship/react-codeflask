@@ -2,10 +2,9 @@
 
   'use strict';
 
-  var gulp = require('gulp');
-  var config = require('./config');
-  var argv = require('yargs').argv;
-  var $ = require('gulp-load-plugins')({
+  const gulp = require('gulp');
+  const config = require('./config');
+  const $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'gulp.*', 'del']
   });
 
