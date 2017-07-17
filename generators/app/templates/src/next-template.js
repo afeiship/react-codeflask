@@ -1,6 +1,6 @@
 (function () {
 
-  var global = global || window || this;
+  var global = global || window || self || this;
 
   var nx = global.nx || require('next-js-core2');
   var Nx<%= ShortProjectName %> = nx.declare('nx.<%= ShortProjectName %>', {
