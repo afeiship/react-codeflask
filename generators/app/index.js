@@ -11,7 +11,7 @@ module.exports = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the awesome ' + chalk.red('generator-zjdd-shop-module') + ' generator!'
+      'Welcome to the awesome ' + chalk.red('generator-fei-github') + ' generator!'
     ));
 
     var prompts = [{
@@ -106,8 +106,8 @@ module.exports = yeoman.generators.Base.extend({
   },
   _writingReadme:function(){
     this.fs.copyTpl(
-      this.templatePath('README.MD'),
-      this.destinationPath('README.MD'),
+      this.templatePath('README.md'),
+      this.destinationPath('README.md'),
       this.props
     );
   },
