@@ -1,8 +1,12 @@
 # <%= project_name %>
 > <%= description %>
 
+## install:
+```bash
+npm install -S afeiship/<%=project_name%> --registry=https://registry.npm.taobao.org
+```
 
-## resources:
-
-## todos:
-- [ ] unit test case
+## usage:
+```js
+//DOCS here!
+```

@@ -2,7 +2,6 @@
 
   var global = global || this || self || window;
   var nx = global.nx || require('next-js-core2');
-  var _ = nx.import(['is']);
 
   var Nx<%= ShortProjectName %> = nx.declare('nx.<%= ShortProjectName %>', {
 
