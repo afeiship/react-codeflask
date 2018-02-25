@@ -10,7 +10,7 @@
   "scripts": {
     "build": "gulp"
   },
-  "main": "dist/<%= project_name %>.js",
+  "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "del": "^2.2.1",
