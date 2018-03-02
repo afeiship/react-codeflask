@@ -36,7 +36,6 @@ module.exports = yeoman.generators.Base.extend({
     this.props.ShortProjectName = this.props.ProjectName.slice(4);
     //console.log(this.props);
     this._writingGulpDir();
-    this._writingSrcDir();
     this._writingNpmrc();
     this._writingEditorConfig();
     this._writingNpmIgnore();
@@ -51,13 +50,6 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copy(
       this.templatePath('./build'),
       this.destinationPath('./build')
-    );
-  },
-  _writingSrcDir:function() {
-    this.fs.copyTpl(
-      this.templatePath('./src/next-template.js'),
-      this.destinationPath('./src/'+this.props.project_name+'.js'),
-      this.props
     );
   },
   _writingNpmrc:function() {
