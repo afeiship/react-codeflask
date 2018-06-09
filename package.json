@@ -1,47 +1,68 @@
 {
   "name": "generator-fei-github",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Yeoman generator for git project.",
-  "homepage": "git@github.com:afeiship/generator-fei-github.git",
+  "homepage": "https://github.com/afeiship/generator-fei-github",
   "author": {
-    "name": "afei",
+    "name": "afeiship",
     "email": "1290657123@qq.com",
-    "url": ""
+    "url": "https://github.com/afeiship"
   },
-  "files": [
-    "generators"
-  ],
+  "files": ["generators"],
   "main": "generators/index.js",
-  "keywords": [
-    "yeoman-generator"
-  ],
-  "dependencies": {
-    "chalk": "^1.0.0",
-    "yeoman-generator": "^0.21.1",
-    "yeoman-generator-helper": "github:afeiship/yeoman-generator-helper",
-    "yosay": "^1.0.2"
-  },
+  "keywords": ["github base", "yeoman-generator"],
   "devDependencies": {
-    "eslint-config-xo-space": "^0.7.0",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^1.0.0",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-mocha": "^2.0.0",
-    "gulp-nsp": "^2.1.0",
-    "gulp-plumber": "^1.0.0",
-    "yeoman-assert": "^2.0.0"
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-xo": "^0.20.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "jest": "^22.0.6",
+    "lint-staged": "^6.1.1",
+    "nsp": "^2.8.0",
+    "prettier": "^1.11.1",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-generator-helper": "github:afeiship/yeoman-generator-helper",
+    "yeoman-test": "^1.7.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "dependencies": {
+    "yeoman-generator": "^2.0.1",
+    "chalk": "^2.1.0",
+    "yosay": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "prepublishOnly": "nsp check",
+    "pretest": "eslint .",
+    "precommit": "lint-staged",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
   },
   "eslintConfig": {
-    "extends": "xo-space",
+    "extends": ["xo", "prettier"],
     "env": {
-      "mocha": true
-    }
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
+    },
+    "plugins": ["prettier"]
   },
-  "repository": "git@github.com:afeiship/generator-github.git",
-  "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
-  },
+  "repository": "git@github.com:afeiship/generator-fei-github.git",
   "license": "MIT"
 }

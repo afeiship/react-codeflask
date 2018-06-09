@@ -18,11 +18,14 @@ yo fei-github
 
 ## Getting To Know Yeoman
 
-Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
+ * Yeoman has a heart of gold.
+ * Yeoman is a person with feelings and opinions, but is very easy to work with.
+ * Yeoman can be too opinionated at times but is easily convinced not to be.
+ * Feel free to [learn more about Yeoman](http://yeoman.io/).
 
 ## License
 
-MIT © [afei]()
+MIT © [afeiship](https://github.com/afeiship)
 
 
 [npm-image]: https://badge.fury.io/js/generator-fei-github.svg

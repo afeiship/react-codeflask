@@ -1,113 +1,44 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var path = require('path');
-var yoHelper = require('yeoman-generator-helper');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const path = require('path');
+const yosay = require('yosay');
+const yoHelper = require('yeoman-generator-helper');
 
-module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
-    var done = this.async();
-
+module.exports = class extends Generator {
+  prompting() {
     // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the awesome ' + chalk.red('generator-fei-github') + ' generator!'
-    ));
+    this.log(
+      yosay(`Welcome to the top-notch ${chalk.red('generator-fei-github')} generator!`)
+    );
 
-    var prompts = [{
-      type: 'input',
-      name: 'project_name',
-      message: 'Your project name?',
-      default: path.basename(process.cwd())
-    }, {
-      type: 'input',
-      name: 'description',
-      message: 'Your description?'
-    }];
+    const prompts = [
+      {
+        type: 'input',
+        name: 'project_name',
+        message: 'Your project name?',
+        default: path.basename(process.cwd())
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Your description?'
+      }
+    ];
 
-    this.prompt(prompts, function (props) {
+    return this.prompt(prompts).then(props => {
+      // To access props later use this.props.someAnswer;
       this.props = props;
-      done();
-    }.bind(this));
-  },
-  writing: function () {
-    yoHelper.rewriteProps(this.props);
-    //remove 'next' string;
-    this.props.ShortProjectName = this.props.ProjectName.slice(4);
-    //console.log(this.props);
-    this._writingGulpDir();
-    this._writingNpmrc();
-    this._writingEditorConfig();
-    this._writingNpmIgnore();
-    this._writingGitIgnore();
-    this._writingLicense();
-    this._writingGulp();
-    this._writingPackageJson();
-    this._writingReadme();
-    this._writingBowerJson();
-  },
-  _writingGulpDir:function() {
-    this.fs.copy(
-      this.templatePath('./build'),
-      this.destinationPath('./build')
-    );
-  },
-  _writingNpmrc:function() {
-    this.fs.copy(
-      this.templatePath('.npmrc'),
-      this.destinationPath('.npmrc')
-    );
-  },
-  _writingEditorConfig: function () {
-    this.fs.copy(
-      this.templatePath('.editorconfig'),
-      this.destinationPath('.editorconfig')
-    );
-  },
-
-  _writingNpmIgnore: function () {
-    this.fs.copy(
-      this.templatePath('.npmignore'),
-      this.destinationPath('.npmignore')
-    );
-  },
-  _writingGitIgnore: function () {
-    this.fs.copy(
-      this.templatePath('.gitignore'),
-      this.destinationPath('.gitignore')
-    );
-  },
-  _writingLicense: function () {
-    this.fs.copy(
-      this.templatePath('LICENSE.txt'),
-      this.destinationPath('LICENSE.txt')
-    );
-  },
-  _writingGulp: function () {
-    this.fs.copy(
-      this.templatePath('gulpfile.js'),
-      this.destinationPath('gulpfile.js')
-    );
-  },
-  _writingPackageJson: function () {
-    this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath('package.json'),
-      this.props
-    );
-  },
-  _writingReadme:function(){
-    this.fs.copyTpl(
-      this.templatePath('README.md'),
-      this.destinationPath('README.md'),
-      this.props
-    );
-  },
-  _writingBowerJson:function(){
-    this.fs.copyTpl(
-      this.templatePath('bower.json'),
-      this.destinationPath('bower.json'),
-      this.props
-    );
+      yoHelper.rewriteProps(this.props);
+    });
   }
-});
+
+  writing() {
+    this.fs.copyTpl(this.templatePath('{**,.*}'), this.destinationPath('.'), this.props);
+  }
+
+  install() {
+    this.log('Well DONE!');
+    // This.installDependencies();
+  }
+};
