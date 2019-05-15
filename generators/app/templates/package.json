@@ -1,6 +1,6 @@
 {
   "name": "<%= project_name %>",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "<%= description %>",
   "homepage": "https://github.com/afeiship/<%= project_name %>",
   "author": {

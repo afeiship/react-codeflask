@@ -8,9 +8,14 @@
     "email": "1290657123@qq.com",
     "url": "https://github.com/afeiship"
   },
-  "files": ["generators"],
+  "files": [
+    "generators"
+  ],
   "main": "generators/index.js",
-  "keywords": ["github base", "yeoman-generator"],
+  "keywords": [
+    "github base",
+    "yeoman-generator"
+  ],
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
@@ -36,18 +41,11 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "scripts": {
-    "prepublishOnly": "nsp check",
-    "pretest": "eslint .",
-    "precommit": "lint-staged",
-    "test": "jest"
-  },
-  "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.json": ["prettier --write", "git add"]
-  },
   "eslintConfig": {
-    "extends": ["xo", "prettier"],
+    "extends": [
+      "xo",
+      "prettier"
+    ],
     "env": {
       "jest": true,
       "node": true
@@ -61,7 +59,9 @@
         }
       ]
     },
-    "plugins": ["prettier"]
+    "plugins": [
+      "prettier"
+    ]
   },
   "repository": "git@github.com:afeiship/generator-fei-github.git",
   "license": "MIT"
