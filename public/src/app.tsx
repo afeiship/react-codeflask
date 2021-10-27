@@ -11,7 +11,7 @@ const Container = styled.div`
 export default (props: any) => {
   return (
     <Container>
-      <ReactCodeflask />
+      <ReactCodeflask maxHeight={200} />
     </Container>
   );
 };

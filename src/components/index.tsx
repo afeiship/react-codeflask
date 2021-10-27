@@ -11,15 +11,23 @@ interface EventTarget {
   };
 }
 
-export type ReactCodeflaskProps = {
+export type ReactCodeflaskProps = typeof HTMLElement & {
   /**
    * The extended className for component.
    */
   className?: string;
   /**
+   * The extended style.
+   */
+  style?: any;
+  /**
    * Default value.
    */
   value?: any;
+  /**
+   * Max height when show scroll.
+   */
+  maxHeight?: number;
   /**
    * The change handler.
    */
@@ -34,6 +42,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static defaultProps = {
+    maxHeight: 0,
     onChange: noop,
     options: {
       language: 'javascript',
@@ -53,6 +62,14 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines__line');
     const targetHeight = lines?.length == 1 ? minHeight : minHeight + 20;
     return Math.max(targetHeight, 40);
+  }
+
+  get computedStyle() {
+    const { style, maxHeight } = this.props;
+    if (maxHeight) {
+      return { ...style, height: maxHeight, minHeight: 40 };
+    }
+    return { ...style, minHeight: this.compoutedMinHeight };
   }
 
   componentDidMount() {
@@ -76,14 +93,14 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   };
 
   render() {
-    const { className, value, onChange, ...props } = this.props;
+    const { className, value, onChange, options, ...props } = this.props;
 
     return (
       <div
         data-component={CLASS_NAME}
         className={classNames(CLASS_NAME, className)}
         ref={(root) => (this.root = root)}
-        style={{ minHeight: this.state.minHeight }}
+        style={this.computedStyle}
         {...props}
       />
     );
