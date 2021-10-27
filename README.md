@@ -1,5 +1,5 @@
-# react-codejar
-> Code live editor for react based on codejar.
+# react-codeflask
+> A micro code-editor for awesome web pages.
 
 [![version][version-image]][version-url]
 [![license][license-image]][license-url]
@@ -8,7 +8,7 @@
 
 ## installation
 ```shell
-npm install -S @jswork/react-codejar
+npm install -S @jswork/react-codeflask
 ```
 
 ## usage
@@ -25,7 +25,7 @@ npm install -S @jswork/react-codejar
 2. import js
   ```js
   import React from 'react';
-  import ReactCodejar from '@jswork/boilerplate-react-component';
+  import ReactCodeflask from '@jswork/boilerplate-react-component';
   import styled from 'styled-components';
 
   const Container = styled.div`
@@ -36,7 +36,7 @@ npm install -S @jswork/react-codejar
   export default (props: any) => {
     return (
       <Container>
-        <ReactCodejar />
+        <ReactCodeflask />
       </Container>
     );
   };
@@ -44,19 +44,19 @@ npm install -S @jswork/react-codejar
   ```
 
 ## preview
-- https://afeiship.github.io/react-codejar/
+- https://afeiship.github.io/react-codeflask/
 
 ## license
-Code released under [the MIT license](https://github.com/afeiship/react-codejar/blob/master/LICENSE.txt).
+Code released under [the MIT license](https://github.com/afeiship/react-codeflask/blob/master/LICENSE.txt).
 
-[version-image]: https://img.shields.io/npm/v/@jswork/react-codejar
-[version-url]: https://npmjs.org/package/@jswork/react-codejar
+[version-image]: https://img.shields.io/npm/v/@jswork/react-codeflask
+[version-url]: https://npmjs.org/package/@jswork/react-codeflask
 
-[license-image]: https://img.shields.io/npm/l/@jswork/react-codejar
-[license-url]: https://github.com/afeiship/react-codejar/blob/master/LICENSE.txt
+[license-image]: https://img.shields.io/npm/l/@jswork/react-codeflask
+[license-url]: https://github.com/afeiship/react-codeflask/blob/master/LICENSE.txt
 
-[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/react-codejar
-[size-url]: https://github.com/afeiship/react-codejar/blob/master/dist/react-codejar.min.js
+[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/react-codeflask
+[size-url]: https://github.com/afeiship/react-codeflask/blob/master/dist/react-codeflask.min.js
 
-[download-image]: https://img.shields.io/npm/dm/@jswork/react-codejar
-[download-url]: https://www.npmjs.com/package/@jswork/react-codejar
+[download-image]: https://img.shields.io/npm/dm/@jswork/react-codeflask
+[download-url]: https://www.npmjs.com/package/@jswork/react-codeflask

@@ -19,7 +19,7 @@ nx.declare({
 
       nx.replaceInFile('README.md', [
         ['__GENERATE_DAPP__', indentString(docApp, 2)],
-        ['../../src/main', '@jswork/react-codejar']
+        ['../../src/main', '@jswork/react-codeflask']
       ]);
     }
   }

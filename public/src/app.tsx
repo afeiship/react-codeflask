@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactCodejar from '../../src/main';
-import 'highlight.js/styles/atom-one-dark.css';
+import ReactCodeflask from '../../src/main';
 import '../../src/components/style.scss';
 import styled from 'styled-components';
 
@@ -12,7 +11,7 @@ const Container = styled.div`
 export default (props: any) => {
   return (
     <Container>
-      <ReactCodejar />
+      <ReactCodeflask />
     </Container>
   );
 };

@@ -2,9 +2,16 @@ import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import CodeFlask from 'codeflask';
-const CLASS_NAME = 'react-codejar';
 
-export type ReactCodejarProps = {
+const CLASS_NAME = 'react-codeflask';
+
+interface EventTarget {
+  target: {
+    value: string;
+  };
+}
+
+export type ReactCodeflaskProps = {
   /**
    * The extended className for component.
    */
@@ -12,26 +19,41 @@ export type ReactCodejarProps = {
   /**
    * Default value.
    */
-  value?: object;
+  value?: any;
   /**
    * The change handler.
    */
-  onChange?: Function;
+  onChange?: (event: EventTarget) => void;
+  /**
+   * Adapter options
+   */
+  options?: any;
 };
 
-export default class ReactCodejar extends Component<ReactCodejarProps> {
+export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static defaultProps = {
-    value: null,
-    onChange: noop
+    onChange: noop,
+    options: {
+      language: 'javascript',
+      lineNumbers: true
+    }
   };
 
   private root: HTMLTextAreaElement | null = null;
 
   state = {
-    minHeight: 200
+    minHeight: 40
   };
+
+  get compoutedMinHeight() {
+    const preHeight = this.root?.querySelector('.codeflask__pre');
+    const minHeight = preHeight?.getBoundingClientRect().height!;
+    const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines__line');
+    const targetHeight = lines?.length == 1 ? minHeight : minHeight + 20;
+    return Math.max(targetHeight, 40);
+  }
 
   componentDidMount() {
     const editorElem = this.root;
@@ -39,28 +61,19 @@ export default class ReactCodejar extends Component<ReactCodejarProps> {
     const textarea = editorElem?.querySelector('textarea');
     flask.updateCode('const my_new_code_here = "Blabla"');
     flask.onUpdate((code) => {
-      console.log('code:', code);
-
       textarea!.value = code;
       setTimeout(() => {
-        this.syncHeight();
+        this.autoUpdate(code);
       }, 0);
-
-      // do something with code here.
-      // this will trigger whenever the code
-      // in the editor changes.
     });
-
-    // autosize(textarea);
   }
 
-  syncHeight() {
-    const preHeight = this.root?.querySelector('.codeflask__pre');
-    const minHeight = preHeight?.getBoundingClientRect().height!;
-    const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines__line');
-    const targetHeight = lines?.length == 1 ? minHeight : minHeight + 20;
-    this.setState({ minHeight: Math.max(targetHeight, 40) });
-  }
+  autoUpdate = (inValue) => {
+    const { onChange } = this.props;
+    this.setState({ minHeight: this.compoutedMinHeight }, () => {
+      onChange!({ target: { value: inValue } });
+    });
+  };
 
   render() {
     const { className, value, onChange, ...props } = this.props;

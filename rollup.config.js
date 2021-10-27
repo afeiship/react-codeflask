@@ -20,7 +20,7 @@ export default [
       format: 'umd',
       exports: 'named',
       sourcemap: false,
-      name: 'ReactCodejar',
+      name: 'ReactCodeflask',
       globals: {
         '@jswork/noop': 'noop',
         'prop-types': 'PropTypes',
