@@ -1,18 +1,9 @@
 import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { CodeJar } from 'codejar';
-import Prism from 'prismjs';
-import hljs from 'highlight.js';
-import { withLineNumbers } from 'codejar/linenumbers';
-
+import CodeFlask from 'codeflask';
+import autosize from 'autosize';
 const CLASS_NAME = 'react-codejar';
-const highlight = (editor) => {
-  // highlight.js does not trims old tags,
-  // let's do it by this hack.
-  editor.textContent = editor.textContent;
-  hljs.highlightElement(editor);
-};
 
 export type ReactCodejarProps = {
   /**
@@ -39,22 +30,44 @@ export default class ReactCodejar extends Component<ReactCodejarProps> {
 
   private root: HTMLTextAreaElement | null = null;
 
+  state = {
+    minHeight: 200
+  };
+
   componentDidMount() {
-    const jar = CodeJar(this.root!, withLineNumbers(highlight), { tab: '\t' });
-    jar.updateCode('let foo = "bar"');
-    this.root!.addEventListener('input', () => {
-      console.log('input ...', jar.toString());
+    const editorElem = this.root;
+    const flask = new CodeFlask(editorElem, { language: 'js', lineNumbers: true });
+    const textarea = editorElem?.querySelector('textarea');
+    flask.updateCode('const my_new_code_here = "Blabla"');
+    flask.onUpdate((code) => {
+      console.log('code:', code);
+
+      textarea!.value = code;
+      this.syncHeight();
+
+      // do something with code here.
+      // this will trigger whenever the code
+      // in the editor changes.
     });
+
+    // autosize(textarea);
+  }
+
+  syncHeight() {
+    const preHeight = this.root?.querySelector('.codeflask__pre');
+    const minHeight = preHeight?.getBoundingClientRect().height;
+    this.setState({ minHeight });
   }
 
   render() {
     const { className, value, onChange, ...props } = this.props;
 
     return (
-      <textarea
+      <div
         data-component={CLASS_NAME}
-        className={classNames(CLASS_NAME, 'language-js', className)}
+        className={classNames(CLASS_NAME, className)}
         ref={(root) => (this.root = root)}
+        style={{ minHeight: this.state.minHeight }}
         {...props}
       />
     );
