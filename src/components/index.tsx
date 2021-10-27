@@ -2,7 +2,6 @@ import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import CodeFlask from 'codeflask';
-import autosize from 'autosize';
 const CLASS_NAME = 'react-codejar';
 
 export type ReactCodejarProps = {
@@ -43,7 +42,9 @@ export default class ReactCodejar extends Component<ReactCodejarProps> {
       console.log('code:', code);
 
       textarea!.value = code;
-      this.syncHeight();
+      setTimeout(() => {
+        this.syncHeight();
+      }, 0);
 
       // do something with code here.
       // this will trigger whenever the code
@@ -55,8 +56,10 @@ export default class ReactCodejar extends Component<ReactCodejarProps> {
 
   syncHeight() {
     const preHeight = this.root?.querySelector('.codeflask__pre');
-    const minHeight = preHeight?.getBoundingClientRect().height;
-    this.setState({ minHeight });
+    const minHeight = preHeight?.getBoundingClientRect().height!;
+    const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines__line');
+    const targetHeight = lines?.length == 1 ? minHeight : minHeight + 20;
+    this.setState({ minHeight: Math.max(targetHeight, 40) });
   }
 
   render() {
