@@ -7,21 +7,21 @@ const Container = styled.div`
   width: 80%;
   margin: 30px auto 0;
 
-  > .is-actions{
+  > .is-actions {
     margin-top: 10px;
   }
 `;
 
 export default (props: any) => {
-  const [ val, setVal ] = useState('var hello = "hello world."');
+  const [val, setVal] = useState('var hello = "hello world."');
   return (
     <Container>
       <ReactCodeflask
         value={val}
-        maxHeight={200}
+        height={0}
         onChange={(e) => {
+          console.log('current value:', e.target.value);
           setVal(e.target.value);
-          console.log('e.target.value', e.target.value);
         }}
       />
 

@@ -11,15 +11,9 @@ interface EventTarget {
   };
 }
 
-export type ReactCodeflaskProps = typeof HTMLElement & {
-  /**
-   * The extended className for component.
-   */
-  className?: string;
-  /**
-   * The extended style.
-   */
-  style?: any;
+type BaseProps = Omit<React.AllHTMLAttributes<HTMLInputElement>, 'onChange'>;
+
+export type ReactCodeflaskProps = BaseProps & {
   /**
    * Default code value.
    */
@@ -31,7 +25,7 @@ export type ReactCodeflaskProps = typeof HTMLElement & {
   /**
    * Max height when show scroll.
    */
-  maxHeight?: number;
+  height?: number;
   /**
    * The change handler.
    */
@@ -46,7 +40,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   static displayName = CLASS_NAME;
   static version = '__VERSION__';
   static defaultProps = {
-    maxHeight: 0,
+    height: 0,
     onChange: noop,
     value: '',
     language: 'javascript',
@@ -65,13 +59,13 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     const minHeight = preHeight?.getBoundingClientRect().height!;
     const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines__line');
     const targetHeight = lines?.length == 1 ? minHeight : minHeight + 20;
-    return Math.max(targetHeight, 40);
+    return Math.max(targetHeight, 40) || 0;
   }
 
   get computedStyle() {
-    const { style, maxHeight } = this.props;
-    return maxHeight
-      ? { ...style, height: maxHeight, minHeight: 40 }
+    const { style, height } = this.props;
+    return height
+      ? { ...style, height: height, minHeight: 40 }
       : { ...style, minHeight: this.compoutedMinHeight };
   }
 
@@ -99,7 +93,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   };
 
   render() {
-    const { className, value, onChange, maxHeight, options, ...props } = this.props;
+    const { className, value, onChange, height, options, ...props } = this.props;
 
     return (
       <div
