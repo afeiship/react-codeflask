@@ -21,9 +21,13 @@ export type ReactCodeflaskProps = typeof HTMLElement & {
    */
   style?: any;
   /**
-   * Default value.
+   * Default code value.
    */
-  value?: any;
+  value?: string;
+  /**
+   * The default highlight lanugage.
+   */
+  language?: string;
   /**
    * Max height when show scroll.
    */
@@ -44,17 +48,17 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   static defaultProps = {
     maxHeight: 0,
     onChange: noop,
+    value: '',
+    language: 'javascript',
     options: {
-      language: 'javascript',
       lineNumbers: true
     }
   };
 
-  private root: HTMLTextAreaElement | null = null;
+  private root: HTMLDivElement | null = null;
+  private jar: CodeFlask = null;
 
-  state = {
-    minHeight: 40
-  };
+  state = { minHeight: 40 };
 
   get compoutedMinHeight() {
     const preHeight = this.root?.querySelector('.codeflask__pre');
@@ -66,34 +70,36 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   get computedStyle() {
     const { style, maxHeight } = this.props;
-    if (maxHeight) {
-      return { ...style, height: maxHeight, minHeight: 40 };
+    return maxHeight
+      ? { ...style, height: maxHeight, minHeight: 40 }
+      : { ...style, minHeight: this.compoutedMinHeight };
+  }
+
+  shouldComponentUpdate(inProps) {
+    const { value } = inProps;
+    if (value !== this.jar.code) {
+      this.jar.updateCode(value);
     }
-    return { ...style, minHeight: this.compoutedMinHeight };
+    return true;
   }
 
   componentDidMount() {
+    const { value, language, options } = this.props;
+    const opts = { language, ...options };
     const editorElem = this.root;
-    const flask = new CodeFlask(editorElem, { language: 'js', lineNumbers: true });
-    const textarea = editorElem?.querySelector('textarea');
-    flask.updateCode('const my_new_code_here = "Blabla"');
-    flask.onUpdate((code) => {
-      textarea!.value = code;
-      setTimeout(() => {
-        this.autoUpdate(code);
-      }, 0);
-    });
+    this.jar = new CodeFlask(editorElem, opts);
+    this.jar.updateCode(value);
+    this.jar.onUpdate(this.autoUpdate);
   }
 
-  autoUpdate = (inValue) => {
+  autoUpdate = () => {
     const { onChange } = this.props;
-    this.setState({ minHeight: this.compoutedMinHeight }, () => {
-      onChange!({ target: { value: inValue } });
-    });
+    onChange!({ target: { value: this.jar.code } });
+    this.setState({ minHeight: this.compoutedMinHeight });
   };
 
   render() {
-    const { className, value, onChange, options, ...props } = this.props;
+    const { className, value, onChange, maxHeight, options, ...props } = this.props;
 
     return (
       <div
