@@ -75,7 +75,8 @@
     "@jswork/filter-react-props": "^1.0.2",
     "@jswork/noop": "^1.0.0",
     "classnames": "^2.2.6",
-    "codeflask": "^1.4.1"
+    "codeflask": "^1.4.1",
+    "prismjs": "^1.25.0"
   },
   "publishConfig": {
     "access": "public",

@@ -2,8 +2,10 @@ import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import CodeFlask from 'codeflask';
+import Prism from 'prismjs';
 
 const CLASS_NAME = 'react-codeflask';
+const SUPPORT_LANGUAGES = ['ruby', 'html', 'css', 'javascript', 'java', 'php', 'shell', 'kotlin'];
 
 interface EventTarget {
   target: {
@@ -25,7 +27,7 @@ export type ReactCodeflaskProps = BaseProps & {
   /**
    * Max height when show scroll.
    */
-  height?: number;
+  height?: number | string;
   /**
    * The change handler.
    */
@@ -43,7 +45,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     height: 0,
     onChange: noop,
     value: '',
-    language: 'javascript',
+    language: 'js',
     options: {
       lineNumbers: true
     }
@@ -69,6 +71,18 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
       : { ...style, minHeight: this.compoutedMinHeight };
   }
 
+  private addLangs = () => {
+    SUPPORT_LANGUAGES.forEach((item) => {
+      this.jar.addLanguage(item, Prism.languages[item]);
+    });
+  };
+
+  private autoUpdate = () => {
+    const { onChange } = this.props;
+    onChange!({ target: { value: this.jar.code } });
+    this.setState({ minHeight: this.compoutedMinHeight });
+  };
+
   shouldComponentUpdate(inProps) {
     const { value } = inProps;
     if (value !== this.jar.code) {
@@ -84,13 +98,8 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     this.jar = new CodeFlask(editorElem, opts);
     this.jar.updateCode(value);
     this.jar.onUpdate(this.autoUpdate);
+    this.addLangs();
   }
-
-  autoUpdate = () => {
-    const { onChange } = this.props;
-    onChange!({ target: { value: this.jar.code } });
-    this.setState({ minHeight: this.compoutedMinHeight });
-  };
 
   render() {
     const { className, value, onChange, height, options, ...props } = this.props;

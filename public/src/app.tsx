@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactCodeflask from '../../src/main';
 import '../../src/components/style.scss';
 import styled from 'styled-components';
+// import 'prismjs/themes/prism.css';
 
 const Container = styled.div`
   width: 80%;
@@ -12,7 +13,7 @@ const Container = styled.div`
   }
 `;
 
-export default (props: any) => {
+export default () => {
   const [val, setVal] = useState('var hello = "hello world."');
   return (
     <Container>
