@@ -14,14 +14,24 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const [val, setVal] = useState('var hello = "hello world."');
+  const [val, setVal] = useState(`const indexes = [4, 8, 12];
+const res = [];
+nx.eachSibling(indexes, (cur, next) => {
+    res.push([cur, next]);
+});
+
+expect(res).toEqual([
+    [4, 8],
+    [8, 12]
+]);`);
   return (
     <Container>
       <ReactCodeflask
         value={val}
         height={0}
+        language="php"
         onChange={(e) => {
-          console.log('current value:', e.target.value);
+          // console.log('current value:', e.target.value);
           setVal(e.target.value);
         }}
       />

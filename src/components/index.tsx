@@ -45,7 +45,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     height: 0,
     onChange: noop,
     value: '',
-    language: 'js',
+    language: 'javascript',
     options: {
       lineNumbers: true
     }
@@ -93,25 +93,27 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   componentDidMount() {
     const { value, language, options } = this.props;
-    const opts = { language, ...options };
+    // todo: other language  not work.
+    const opts = { language: 'js', ...options };
     const editorElem = this.root;
     this.jar = new CodeFlask(editorElem, opts);
+    this.addLangs();
     this.jar.updateCode(value);
     this.jar.onUpdate(this.autoUpdate);
-    this.addLangs();
   }
 
   render() {
-    const { className, value, onChange, height, options, ...props } = this.props;
+    const { className, value, onChange, height, language, options, ...props } = this.props;
 
     return (
       <div
         data-component={CLASS_NAME}
         className={classNames(CLASS_NAME, className)}
-        ref={(root) => (this.root = root)}
         style={this.computedStyle}
-        {...props}
-      />
+        {...props}>
+        <span ref={(root) => (this.root = root)}></span>
+        <span className="language-name">{language}</span>
+      </div>
     );
   }
 }
