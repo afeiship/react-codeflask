@@ -28,6 +28,7 @@ npm install -S @jswork/react-codeflask
   import ReactCodeflask from '@jswork/react-codeflask';
   import '../../src/components/style.scss';
   import styled from 'styled-components';
+  // import 'prismjs/themes/prism.css';
 
   const Container = styled.div`
     width: 80%;
@@ -38,15 +39,25 @@ npm install -S @jswork/react-codeflask
     }
   `;
 
-  export default (props: any) => {
-    const [val, setVal] = useState('var hello = "hello world."');
+  export default () => {
+    const [val, setVal] = useState(`const indexes = [4, 8, 12];
+  const res = [];
+  nx.eachSibling(indexes, (cur, next) => {
+      res.push([cur, next]);
+  });
+
+  expect(res).toEqual([
+      [4, 8],
+      [8, 12]
+  ]);`);
     return (
       <Container>
         <ReactCodeflask
           value={val}
           height={0}
+          language="php"
           onChange={(e) => {
-            console.log('current value:', e.target.value);
+            // console.log('current value:', e.target.value);
             setVal(e.target.value);
           }}
         />
