@@ -14,22 +14,16 @@ const Container = styled.div`
 `;
 
 export default () => {
-  const [val, setVal] = useState(`const indexes = [4, 8, 12];
-const res = [];
-nx.eachSibling(indexes, (cur, next) => {
-    res.push([cur, next]);
-});
-
-expect(res).toEqual([
-    [4, 8],
-    [8, 12]
-]);`);
+  const [val, setVal] = useState(
+    `curl 'https://api.cdnjs.com/libraries/backbone.js/tutorials/this-tutorial-doesnt-exist' | json`
+  );
   return (
     <Container>
       <ReactCodeflask
         value={val}
         height={0}
-        language="php"
+        language="shell"
+        disabled
         onChange={(e) => {
           // console.log('current value:', e.target.value);
           setVal(e.target.value);

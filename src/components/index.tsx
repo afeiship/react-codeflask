@@ -29,6 +29,14 @@ export type ReactCodeflaskProps = BaseProps & {
    */
   height?: number | string;
   /**
+   * If readonly.
+   */
+  readOnly?: boolean;
+  /**
+   * If disalbed.
+   */
+  disabeld?: boolean;
+  /**
    * The change handler.
    */
   onChange?: (event: EventTarget) => void;
@@ -46,6 +54,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     onChange: noop,
     value: '',
     language: 'javascript',
+    readOnly: false,
     options: {
       lineNumbers: true
     }
@@ -92,9 +101,9 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   }
 
   componentDidMount() {
-    const { value, options } = this.props;
+    const { value, readOnly, options } = this.props;
     // todo: other language  not work.
-    const opts = { language: 'js', ...options };
+    const opts = { language: 'js', readonly: readOnly, ...options };
     const editorElem = this.root;
     this.jar = new CodeFlask(editorElem, opts);
     this.addLangs();
@@ -111,7 +120,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         className={classNames(CLASS_NAME, className)}
         style={this.computedStyle}
         {...props}>
-        <span ref={(root) => (this.root = root)}></span>
+        <div className="is-editor" ref={(root) => (this.root = root)}></div>
         <span className="language-name">{language}</span>
       </div>
     );

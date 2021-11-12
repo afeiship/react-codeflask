@@ -1,7 +1,14 @@
 .react-codeflask {
   width: 100%;
-  border: 1px solid #ccc;
+  outline: 1px solid #ccc;
   position: relative;
+
+  &[disabled] {
+    > .is-editor {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+  }
 
   > .language-name {
     position: absolute;
