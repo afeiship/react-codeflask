@@ -101,9 +101,9 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   }
 
   componentDidMount() {
-    const { value, readOnly, options } = this.props;
+    const { value, readOnly, language, options } = this.props;
     // todo: other language  not work.
-    const opts = { language: 'js', readonly: readOnly, ...options };
+    const opts = { language, readonly: readOnly, ...options };
     const editorElem = this.root;
     this.jar = new CodeFlask(editorElem, opts);
     this.addLangs();

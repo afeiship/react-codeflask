@@ -22,7 +22,7 @@ export default () => {
       <ReactCodeflask
         value={val}
         height={0}
-        language="shell"
+        language="js"
         onChange={(e) => {
           // console.log('current value:', e.target.value);
           setVal(e.target.value);
