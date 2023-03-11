@@ -5,7 +5,7 @@ import CodeFlask from 'codeflask';
 import Prism from 'prismjs';
 
 const CLASS_NAME = 'react-codeflask';
-const SUPPORT_LANGUAGES = ['ruby', 'html', 'css', 'javascript', 'java', 'php', 'shell', 'kotlin'];
+const SUPPORT_LANGUAGES = ['ruby', 'html', 'css', 'javascript', 'json', 'java', 'php', 'shell', 'kotlin', 'sql', 'python'];
 
 interface EventTarget {
   target: {
@@ -65,7 +65,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   state = { minHeight: 40 };
 
-  get compoutedMinHeight() {
+  get computedMinHeight() {
     const preHeight = this.root?.querySelector('.codeflask__pre');
     const minHeight = preHeight?.getBoundingClientRect().height!;
     const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines__line');
@@ -77,7 +77,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     const { style, height } = this.props;
     return height
       ? { ...style, height: height, minHeight: 40 }
-      : { ...style, minHeight: this.compoutedMinHeight };
+      : { ...style, minHeight: this.computedMinHeight };
   }
 
   private addLangs = () => {
@@ -89,7 +89,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   private autoUpdate = () => {
     const { onChange } = this.props;
     onChange!({ target: { value: this.jar.code } });
-    this.setState({ minHeight: this.compoutedMinHeight });
+    this.setState({ minHeight: this.computedMinHeight });
   };
 
   shouldComponentUpdate(inProps) {
@@ -120,8 +120,8 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         className={classNames(CLASS_NAME, className)}
         style={this.computedStyle}
         {...props}>
-        <div className="is-editor" ref={(root) => (this.root = root)}></div>
-        <span className="language-name">{language}</span>
+        <div className='is-editor' ref={(root) => (this.root = root)}></div>
+        <span className='language-name'>{language}</span>
       </div>
     );
   }
