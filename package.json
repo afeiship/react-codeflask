@@ -14,7 +14,6 @@
     "clean": "rimraf dist",
     "predocs": "node build/markdown.js",
     "build": "npm run clean && rollup -c",
-    "docs": "tsc && vite build",
     "docs:serve": "vite preview",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -80,5 +79,14 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "keywords": [
+    "react",
+    "live",
+    "editor",
+    "code",
+    "highlight",
+    "codeforces",
+    "codeflask"
+  ]
 }
