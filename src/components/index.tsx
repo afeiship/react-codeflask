@@ -5,6 +5,7 @@ import CodeFlask from 'codeflask';
 import Prism from 'prismjs';
 
 const CLASS_NAME = 'react-codeflask';
+const IMG_LOADING = 'https://assets-cdn.shimo.im/assets/images/loading-b67e5a67dc.gif';
 const SUPPORT_LANGUAGES = [
   'ruby',
   'html',
@@ -138,11 +139,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         <div className="is-editor" ref={(root) => (this.root = root)}></div>
         <span className="language-name">{language}</span>
         <div hidden={!loading} className={`${CLASS_NAME}__spin`}>
-          <img
-            alt="loading image"
-            aria-role="loading"
-            src="https://assets-cdn.shimo.im/assets/images/loading-b67e5a67dc.gif"
-          />
+          <img alt="loading image" aria-role="loading" src={IMG_LOADING} />
         </div>
       </div>
     );
