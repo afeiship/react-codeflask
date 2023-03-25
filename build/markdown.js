@@ -1,6 +1,7 @@
-import fs from 'fs';
-import indentString from 'indent-string';
-import '@jswork/next-replace-in-file';
+const fs = require('fs');
+const indentString = require('indent-string');
+
+require('@jswork/next-replace-in-file');
 
 nx.declare({
   statics: {

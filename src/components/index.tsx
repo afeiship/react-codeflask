@@ -107,7 +107,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   shouldComponentUpdate(inProps) {
     const { value } = inProps;
-    if (value !== this.jar.code) this.jar.updateCode(value);
+    if (value !== this.jar.code) this.updateJar(value);
     return true;
   }
 
@@ -115,16 +115,19 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     const { value, readOnly, language, options } = this.props;
     const opts = { language, readonly: readOnly, ...options };
     const editorElem = this.root;
-    this.setState({ loading: true });
     this.jar = new CodeFlask(editorElem, opts);
     this.addLangs();
-    this.jar.updateCode(value);
+    this.updateJar(value);
     this.jar.onUpdate(this.autoUpdate);
+  }
 
+  updateJar = (inValue) => {
+    this.setState({ loading: true });
+    this.jar.updateCode(inValue);
     setTimeout(() => {
       this.setState({ loading: false });
     }, 500);
-  }
+  };
 
   render() {
     const { className, value, onChange, height, language, options, ...props } = this.props;
