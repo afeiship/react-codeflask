@@ -5,7 +5,19 @@ import CodeFlask from 'codeflask';
 import Prism from 'prismjs';
 
 const CLASS_NAME = 'react-codeflask';
-const SUPPORT_LANGUAGES = ['ruby', 'html', 'css', 'javascript', 'json', 'java', 'php', 'shell', 'kotlin', 'sql', 'python'];
+const SUPPORT_LANGUAGES = [
+  'ruby',
+  'html',
+  'css',
+  'javascript',
+  'json',
+  'java',
+  'php',
+  'shell',
+  'kotlin',
+  'sql',
+  'python'
+];
 
 interface EventTarget {
   target: {
@@ -63,17 +75,17 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   private root: HTMLSpanElement | null = null;
   private jar: CodeFlask = null;
 
-  state = { minHeight: 40 };
+  state = { minHeight: 40, loading: false };
 
   get computedMinHeight() {
     const preHeight = this.root?.querySelector('.codeflask__pre');
     const minHeight = preHeight?.getBoundingClientRect().height!;
-    const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines__line');
+    const lines = this.root?.querySelectorAll('.codeflask__lines .codeflask__lines-line');
     const targetHeight = lines?.length == 1 ? minHeight : minHeight + 20;
     return Math.max(targetHeight, 40) || 0;
   }
 
-  get computedStyle() {
+  get computedStyle(): any {
     const { style, height } = this.props;
     return height
       ? { ...style, height: height, minHeight: 40 }
@@ -94,25 +106,28 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   shouldComponentUpdate(inProps) {
     const { value } = inProps;
-    if (value !== this.jar.code) {
-      this.jar.updateCode(value);
-    }
+    if (value !== this.jar.code) this.jar.updateCode(value);
     return true;
   }
 
   componentDidMount() {
     const { value, readOnly, language, options } = this.props;
-    // todo: other language  not work.
     const opts = { language, readonly: readOnly, ...options };
     const editorElem = this.root;
+    this.setState({ loading: true });
     this.jar = new CodeFlask(editorElem, opts);
     this.addLangs();
     this.jar.updateCode(value);
     this.jar.onUpdate(this.autoUpdate);
+
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 500);
   }
 
   render() {
     const { className, value, onChange, height, language, options, ...props } = this.props;
+    const { loading } = this.state;
 
     return (
       <div
@@ -120,8 +135,15 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         className={classNames(CLASS_NAME, className)}
         style={this.computedStyle}
         {...props}>
-        <div className='is-editor' ref={(root) => (this.root = root)}></div>
-        <span className='language-name'>{language}</span>
+        <div className="is-editor" ref={(root) => (this.root = root)}></div>
+        <span className="language-name">{language}</span>
+        <div hidden={!loading} className={`${CLASS_NAME}__spin`}>
+          <img
+            alt="loading image"
+            aria-role="loading"
+            src="https://assets-cdn.shimo.im/assets/images/loading-b67e5a67dc.gif"
+          />
+        </div>
       </div>
     );
   }
