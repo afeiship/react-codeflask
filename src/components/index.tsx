@@ -139,7 +139,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         <div className="is-editor" ref={(root) => (this.root = root)}></div>
         <span className="language-name">{language}</span>
         <div hidden={!loading} className={`${CLASS_NAME}__spin`}>
-          <img alt="loading image" aria-role="loading" src={IMG_LOADING} />
+          <img alt="loading image" src={IMG_LOADING} />
         </div>
       </div>
     );
