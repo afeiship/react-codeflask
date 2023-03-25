@@ -69,7 +69,7 @@ export default [
     input: 'src/components/style.scss',
     output: null,
     plugins: [
-      scss({ output: 'dist/style.css' }),
+      scss({ output: 'dist/style.css', sass: require('sass') }),
       copy({
         targets: [{ src: 'src/components/style.scss', dest: 'dist' }]
       })
