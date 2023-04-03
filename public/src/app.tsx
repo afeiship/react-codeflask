@@ -23,10 +23,10 @@ export default () => {
         value={val}
         height={0}
         language="js"
-        onChange={(e) => {
-          // console.log('current value:', e.target.value);
-          setVal(e.target.value);
-        }}
+        // onChange={(e) => {
+        //   // console.log('current value:', e.target.value);
+        //   setVal(e.target.value);
+        // }}
       />
 
       <div className="is-actions">

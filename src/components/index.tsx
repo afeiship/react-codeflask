@@ -107,7 +107,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   shouldComponentUpdate(inProps) {
     const { value } = inProps;
-    if (value !== this.jar.code) this.updateJar(value);
+    if (value !== this.props.value) this.updateJar(value);
     return true;
   }
 
