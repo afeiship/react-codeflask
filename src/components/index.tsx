@@ -95,13 +95,14 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   private addLangs = () => {
     SUPPORT_LANGUAGES.forEach((item) => {
-      this.jar.addLanguage(item, Prism.languages[item]);
+      this.jar?.addLanguage(item, Prism.languages[item]);
     });
   };
 
   private autoUpdate = () => {
+    if (!this.jar) return;
     const { onChange } = this.props;
-    onChange!({ target: { value: this.jar.code } });
+    onChange!({ target: { value: this.jar?.code } });
     this.setState({ minHeight: this.computedMinHeight });
   };
 
@@ -118,7 +119,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     this.jar = new CodeFlask(editorElem, opts);
     this.addLangs();
     this.updateJar(value);
-    this.jar.onUpdate(this.autoUpdate);
+    this.jar?.onUpdate(this.autoUpdate);
   }
 
   componentWillUnmount() {
@@ -126,13 +127,12 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   }
 
   updateJar = (inValue) => {
-    if (this.jar) {
-      this.setState({ loading: true });
-      this.jar?.updateCode(inValue);
-      setTimeout(() => {
-        this.jar && this.setState({ loading: false });
-      }, 500);
-    }
+    if (!this.jar) return;
+    this.setState({ loading: true });
+    this.jar?.updateCode(inValue);
+    setTimeout(() => {
+      this.jar && this.setState({ loading: false });
+    }, 500);
   };
 
   render() {
