@@ -121,12 +121,18 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     this.jar.onUpdate(this.autoUpdate);
   }
 
+  componentWillUnmount() {
+    this.jar = null;
+  }
+
   updateJar = (inValue) => {
-    this.setState({ loading: true });
-    this.jar.updateCode(inValue);
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 500);
+    if (this.jar) {
+      this.setState({ loading: true });
+      this.jar?.updateCode(inValue);
+      setTimeout(() => {
+        this.jar && this.setState({ loading: false });
+      }, 500);
+    }
   };
 
   render() {
