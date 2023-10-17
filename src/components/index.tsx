@@ -7,17 +7,28 @@ import Prism from 'prismjs';
 const CLASS_NAME = 'react-codeflask';
 const IMG_LOADING = 'https://assets-cdn.shimo.im/assets/images/loading-b67e5a67dc.gif';
 const SUPPORT_LANGUAGES = [
-  'ruby',
+  'plaintext',
+  'shell',
   'html',
-  'css',
   'javascript',
   'json',
+  'typescript',
+  'css',
+  'dart',
   'java',
-  'php',
-  'shell',
+  'go',
+  'python',
+  'ruby',
+  'lua',
+  'rust',
   'kotlin',
+  'php',
+  'xml',
+  'apache',
+  'ini',
+  'yml',
   'sql',
-  'python'
+  'c'
 ];
 
 interface EventTarget {
@@ -116,10 +127,12 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     const { value, readOnly, language, options } = this.props;
     const opts = { language, readonly: readOnly, ...options };
     const editorElem = this.root;
+    this.setState({ loading: true });
     this.jar = new CodeFlask(editorElem, opts);
     this.addLangs();
     this.updateJar(value);
     this.jar?.onUpdate(this.autoUpdate);
+    setTimeout(() => this.setState({ loading: false }), 500);
   }
 
   componentWillUnmount() {
@@ -128,11 +141,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
 
   updateJar = (inValue) => {
     if (!this.jar) return;
-    this.setState({ loading: true });
     this.jar?.updateCode(inValue);
-    setTimeout(() => {
-      this.jar && this.setState({ loading: false });
-    }, 500);
   };
 
   render() {
