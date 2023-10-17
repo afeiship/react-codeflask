@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import React, { Component } from 'react';
 import CodeFlask from 'codeflask';
 import Prism from 'prismjs';
+import jsBeautify from 'js-beautify';
 
 const CLASS_NAME = 'react-codeflask';
 const IMG_LOADING = 'https://assets-cdn.shimo.im/assets/images/loading-b67e5a67dc.gif';
@@ -30,6 +31,36 @@ const SUPPORT_LANGUAGES = [
   'sql',
   'c'
 ];
+
+const beautifyOptions = {
+  html: {
+    indent_size: 2,
+    indent_char: ' ',
+    max_preserve_newlines: 1,
+    preserve_newlines: true,
+    indent_handlebars: false,
+    extra_liners: [],
+    end_with_newline: false
+  },
+  js: {
+    indent_size: 2,
+    indent_char: ' ',
+    max_preserve_newlines: 1,
+    preserve_newlines: true,
+    indent_handlebars: false,
+    extra_liners: [],
+    end_with_newline: false
+  },
+  css: {
+    indent_size: 2,
+    indent_char: ' ',
+    max_preserve_newlines: 1,
+    preserve_newlines: true,
+    indent_handlebars: false,
+    extra_liners: [],
+    end_with_newline: false
+  }
+};
 
 interface EventTarget {
   target: {
@@ -144,6 +175,14 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     this.jar?.updateCode(inValue);
   };
 
+  handleFormat = () => {
+    const { language } = this.props;
+    const opts = beautifyOptions[language!] || beautifyOptions.js;
+    const fn = jsBeautify[language] || jsBeautify.js;
+    const res = fn(this.jar?.code, opts);
+    this?.jar?.updateCode(res);
+  };
+
   render() {
     const { className, value, onChange, height, language, options, ...props } = this.props;
     const { loading } = this.state;
@@ -154,7 +193,9 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         className={classNames(CLASS_NAME, className)}
         style={this.computedStyle}
         {...props}>
-        <button className="is-formatter">Format</button>
+        <button onClick={this.handleFormat} className="is-formatter">
+          Format
+        </button>
         <div className="is-editor" ref={(root) => (this.root = root)}>
           button
         </div>
