@@ -1,7 +1,7 @@
 {
   "name": "@jswork/react-codeflask",
   "homepage": "https://js.work",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A micro code-editor for awesome web pages.",
   "license": "MIT",
   "main": "dist/index.js",
