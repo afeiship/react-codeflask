@@ -154,7 +154,10 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         className={classNames(CLASS_NAME, className)}
         style={this.computedStyle}
         {...props}>
-        <div className="is-editor" ref={(root) => (this.root = root)}></div>
+        <button className="is-formatter">Format</button>
+        <div className="is-editor" ref={(root) => (this.root = root)}>
+          button
+        </div>
         <span className="language-name">{language}</span>
         <div hidden={!loading} className={`${CLASS_NAME}__spin`}>
           <img alt="loading image" src={IMG_LOADING} />
