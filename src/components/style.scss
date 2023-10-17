@@ -36,8 +36,9 @@
 
   > .language-name {
     position: absolute;
-    right: 10px;
+    right: 40px;
     top: 0;
+    z-index: 10;
     padding: 0.1rem 0.3rem 0.15rem;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -52,12 +53,13 @@
     border:none;
     position: absolute;
     z-index: 10;
-    bottom: 0;
-    right: 0;
+    right: 2px;
+    top: 0;
     padding: 3px 10px;
-    background: #eee;
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
     transition: 0.3s;
-    border-radius: 4px 0 4px 0;
+    border-radius: 4px;
     &:active{
       background: #ddd;
     }

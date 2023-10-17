@@ -194,7 +194,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
         style={this.computedStyle}
         {...props}>
         <button onClick={this.handleFormat} className="is-formatter">
-          Format
+          ☘️
         </button>
         <div className="is-editor" ref={(root) => (this.root = root)}>
           button
