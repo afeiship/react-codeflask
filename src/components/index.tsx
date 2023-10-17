@@ -132,7 +132,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
     this.addLangs();
     this.updateJar(value);
     this.jar?.onUpdate(this.autoUpdate);
-    setTimeout(() => this.setState({ loading: false }), 500);
+    setTimeout(() => this.jar && this.setState({ loading: false }), 500);
   }
 
   componentWillUnmount() {
