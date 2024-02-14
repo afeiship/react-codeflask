@@ -6,9 +6,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/main.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "clean": "rimraf dist",
@@ -73,20 +71,11 @@
     "classnames": "^2.2.6",
     "codeflask": "^1.4.1",
     "js-beautify": "^1.14.9",
-    "prismjs": "^1.25.0",
     "tslib": "^2.5.0"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "keywords": [
-    "react",
-    "live",
-    "editor",
-    "code",
-    "highlight",
-    "codeforces",
-    "codeflask"
-  ]
+  "keywords": ["react", "live", "editor", "code", "highlight", "codeforces", "codeflask"]
 }
