@@ -24,6 +24,9 @@ export default [
         '@jswork/noop': 'noop',
         'prop-types': 'PropTypes',
         'classnames': 'classNames',
+        'js-beautify': 'jsBeautify',
+        'codeflask': 'CodeFlask',
+        'prismjs': 'Prism',
         'react': 'React',
         'react-dom': 'ReactDOM'
       }

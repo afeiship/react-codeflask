@@ -1,8 +1,7 @@
-import noop from '@jswork/noop';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import CodeFlask from 'codeflask';
-import Prism from 'prismjs';
+import * as Prism from 'prismjs';
 import jsBeautify from 'js-beautify';
 
 const CLASS_NAME = 'react-codeflask';
@@ -21,6 +20,7 @@ const SUPPORT_LANGUAGES = [
   'python',
   'ruby',
   'lua',
+  'dart',
   'rust',
   'kotlin',
   'php',
@@ -88,9 +88,9 @@ export type ReactCodeflaskProps = BaseProps & {
    */
   readOnly?: boolean;
   /**
-   * If disalbed.
+   * If disabled.
    */
-  disabeld?: boolean;
+  disabled?: boolean;
   /**
    * The change handler.
    */
@@ -106,7 +106,6 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   static version = '__VERSION__';
   static defaultProps = {
     height: 0,
-    onChange: noop,
     value: '',
     language: 'javascript',
     readOnly: false,
@@ -144,7 +143,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   private autoUpdate = () => {
     if (!this.jar) return;
     const { onChange } = this.props;
-    onChange!({ target: { value: this.jar?.code } });
+    onChange?.({ target: { value: this.jar?.code } });
     this.setState({ minHeight: this.computedMinHeight });
   };
 
