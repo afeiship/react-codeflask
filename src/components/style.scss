@@ -6,7 +6,7 @@
   --codeflask-loading-size: 40px;
 
   &__spin {
-    [hidden] {
+    & [hidden] {
       display: none;
       z-index: -1;
     }
