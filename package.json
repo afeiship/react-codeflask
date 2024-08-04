@@ -1,12 +1,14 @@
 {
   "name": "@jswork/react-codeflask",
   "homepage": "https://js.work",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "A micro code-editor for awesome web pages.",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/main.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "clean": "rimraf dist",
@@ -75,5 +77,13 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "keywords": ["react", "live", "editor", "code", "highlight", "codeforces", "codeflask"]
+  "keywords": [
+    "react",
+    "live",
+    "editor",
+    "code",
+    "highlight",
+    "codeforces",
+    "codeflask"
+  ]
 }
