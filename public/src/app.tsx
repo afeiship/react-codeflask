@@ -31,8 +31,8 @@ export default () => {
 
       <div className="is-actions">
         <button
-          onClick={(e) => {
-            setVal('const for="bar"; \nlet bar="bc";');
+          onClick={() => {
+            setVal('const foo="bar"; \nlet bar="bc";');
           }}>
           Set value.
         </button>
