@@ -71,6 +71,7 @@
     "classnames": "^2.2.6",
     "codeflask": "^1.4.1",
     "js-beautify": "^1.15.1",
+    "prismjs": "*",
     "tslib": "^2.5.0"
   },
   "publishConfig": {
