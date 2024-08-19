@@ -115,7 +115,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   };
 
   private root: HTMLSpanElement | null = null;
-  private jar: CodeFlask = null;
+  private jar:any = null;
 
   state = { minHeight: 40, loading: false };
 
@@ -156,7 +156,7 @@ export default class ReactCodeflask extends Component<ReactCodeflaskProps> {
   componentDidMount() {
     const { value, readOnly, language, options } = this.props;
     const opts = { language, readonly: readOnly, ...options };
-    const editorElem = this.root;
+    const editorElem = this.root as Element;
     this.setState({ loading: true });
     this.jar = new CodeFlask(editorElem, opts);
     this.addLangs();
