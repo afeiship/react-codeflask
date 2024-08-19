@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import CodeFlask from 'codeflask';
+import CodeFlask from '@jswork/codeflask';
 import * as Prism from 'prismjs';
 import jsBeautify from 'js-beautify';
 
